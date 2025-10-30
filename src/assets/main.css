@@ -1,0 +1,46 @@
+/* Definición de la paleta y tipografía */
+:root {
+  /* Paleta de Colores */
+  --color-primario: #0a2a43;    /* Azul Oscuro (Confianza) */
+  --color-acento: #D98E04;     /* Naranja/Dorado (Acción) */
+  --color-acento-hover: #f0a10f;
+  
+  --color-texto: #333333;
+  --color-texto-claro: #F4F4F4;
+  --color-fondo: #FFFFFF;
+  --color-fondo-secundario: #F9F9F9;
+
+  /* Tipografía */
+  --fuente-titulos: 'Merriweather', serif;
+  --fuente-cuerpo: 'Lato', sans-serif;
+}
+
+/* Reseteo básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente-cuerpo);
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fuente-titulos);
+  color: var(--color-primario);
+  margin-bottom: 0.75rem;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
