@@ -8,7 +8,7 @@
 import { computed } from 'vue'
 
 // Podrías pasar el teléfono como prop, pero para empezar lo hardcodeamos
-const telefono = '5491112345678' // Reemplazar con el número real
+const telefono = '5491157548838' // Reemplazar con el número real
 const mensaje = encodeURIComponent('Hola, vengo de su sitio web y quisiera hacer una consulta.')
 
 const whatsappLink = computed(() => {
