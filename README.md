@@ -1,38 +1,67 @@
-# juridico-gonzalez
+# ⚖️ Sitio Web - Jurídico González
 
-This template should help get you started developing with Vue 3 in Vite.
+Este repositorio contiene el código fuente del sitio web oficial para el estudio jurídico "Jurídico González". El proyecto fue desarrollado como una Single Page Application (SPA) moderna, rápida y completamente responsiva.
 
-## Recommended IDE Setup
+**Ver la demo en vivo:** [https://juridico-gonzalez.netlify.app](https://juridico-gonzalez.netlify.app)
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Recommended Browser Setup
+## 📋 Descripción del Proyecto
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+El objetivo de este proyecto era crear una presencia digital profesional para un estudio jurídico, basada en el brief de un cliente. Los pilares fundamentales del proyecto son:
 
-## Customize configuration
+* **Confianza y Claridad:** Transmitir los valores de "Confianza, Lealtad y Compromiso".
+* **Simpleza:** Presentar la información legal de forma "simple y entendible", desmitificando la complejidad de la justicia.
+* **Conversión:** Facilitar el contacto directo a través de un botón de WhatsApp prominente y un formulario de contacto.
+* **Contenido Dinámico:** Incluir un blog para publicar "novedades jurídicas" y atraer tráfico.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+![Captura de pantalla del sitio web de Juridico Gonzalez](https://via.placeholder.com/800x450.png?text=Agregá+un+screenshot+de+tu+proyecto+aquí)
 
-## Project Setup
+*(Recomendación: Reemplazá el link de arriba con un screenshot real de tu Home page)*
 
-```sh
-npm install
-```
+---
 
-### Compile and Hot-Reload for Development
+## ✨ Características Principales
 
-```sh
-npm run dev
-```
+* **100% Responsivo:** Diseño adaptativo con un menú hamburguesa funcional para una experiencia perfecta en móviles.
+* **Ruteo del Lado del Cliente:** Navegación instantánea entre páginas (Inicio, Sobre Mí, Servicios, Contacto) usando `vue-router`.
+* **Blog Dinámico:** Sistema de blog que consume datos desde un archivo JSON (preparado para escalar a un Headless CMS).
+* **Componentes Reutilizables:** Creación de componentes modulares como `Navbar`, `Footer`, y `BotonWhatsapp`.
+* **Branding Personalizado:** Integración de logo, paleta de colores profesional (Azul oscuro y Naranja) y tipografía legal (Merriweather y Lato).
 
-### Compile and Minify for Production
+---
 
-```sh
-npm run build
-```
+## 💻 Stack de Tecnología
+
+* **Framework:** [Vue.js 3](https://vuejs.org/) (usando Composition API)
+* **Bundler:** [Vite](https://vitejs.dev/)
+* **Ruteo:** [Vue Router](https://router.vuejs.org/)
+* **Hosting:** [Netlify](https://www.netlify.com/)
+
+---
+
+## 🚀 Cómo ejecutar este proyecto localmente
+
+Si querés clonar y correr este proyecto en tu máquina local, seguí estos pasos:
+
+1.  **Cloná el repositorio:**
+    ```bash
+    git clone [https://github.com/tu-usuario/juridico-gonzalez.git](https://github.com/tu-usuario/juridico-gonzalez.git)
+    ```
+
+2.  **Navegá a la carpeta del proyecto:**
+    ```bash
+    cd juridico-gonzalez
+    ```
+
+3.  **Instalá las dependencias:**
+    ```bash
+    npm install
+    ```
+
+4.  **Corré el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+5.  **Abrí tu navegador** en `http://localhost:5173` (o la URL que indique Vite).

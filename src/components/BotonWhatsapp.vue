@@ -1,44 +1,37 @@
+<template>
+  <a :href="whatsappLink" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+    <slot>Contactar por WhatsApp</slot>
+  </a>
+</template>
+
 <script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true,
-  },
+import { computed } from 'vue'
+
+// Podrías pasar el teléfono como prop, pero para empezar lo hardcodeamos
+const telefono = '5491112345678' // Reemplazar con el número real
+const mensaje = encodeURIComponent('Hola, vengo de su sitio web y quisiera hacer una consulta.')
+
+const whatsappLink = computed(() => {
+  return `https://api.whatsapp.com/send?phone=${telefono}&text=${mensaje}`
 })
 </script>
 
-<template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
-    </h3>
-  </div>
-</template>
-
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
+.btn-whatsapp {
+  display: inline-block;
+  background-color: var(--color-acento);
+  color: var(--color-fondo);
+  padding: 0.8rem 1.8rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+.btn-whatsapp:hover {
+  background-color: var(--color-acento-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 </style>
