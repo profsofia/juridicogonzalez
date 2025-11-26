@@ -9,48 +9,52 @@
 
       <div class="contenido-grid">
         <div class="col-texto">
-          <h2>Dr. [Nombre del Abogado] González</h2>
+          <h2>Dr. Diego González</h2>
           <p class="introduccion">
             Soy un abogado comprometido con la transparencia. Durante años, he visto cómo las personas se sienten abrumadas por el lenguaje legal y los procesos complejos. 
           </p>
           <p>
-            Mi objetivo principal es ser tu guía y tu representante, brindándote la **información legal necesaria para que entiendas el contexto de tu reclamo**[cite: 6]. Sin sorpresas, sin falsas promesas, solo un análisis honesto de tu situación para encontrar la mejor estrategia legal. 
+            Mi objetivo principal es ser tu guía y tu representante, brindándote la <b>información legal necesaria para que entiendas el contexto de tu reclamo</b>. Sin sorpresas, sin falsas promesas, solo un análisis honesto de tu situación para encontrar la mejor estrategia legal. 
           </p>
-          
-          <h3 class="titulo-valores">Mis Pilares Fundamentales</h3>
-          <div class="valores-grid">
-            <div class="valor-card">
-              <h4>Confianza </h4>
-              <p>Una relación abogado-cliente basada en la honestidad total desde la primera consulta. </p>
-            </div>
-            <div class="valor-card">
-              <h4>Lealtad </h4>
-              <p>Mi compromiso es 100% con tus intereses y la defensa de tus derechos afectados. [cite: 6, 15]</p>
-            </div>
-            <div class="valor-card">
-              <h4>Compromiso </h4>
-              <p>Dedicación y perseverancia para acompañarte durante todo el proceso. </p>
-            </div>
-          </div>
         </div>
         
         <div class="col-imagen">
-          <img src="https://via.placeholder.com/450x550" alt="Foto profesional del Dr. González">
+          <img :src="logo" alt="Logo de Jurídico González">
           <BotonWhatsapp class="btn-wsp-flotante">
             ¿Tenés una consulta?
           </BotonWhatsapp>
         </div>
       </div>
+      </div> <section class="valores-seccion">
+      <div class="container">
+        <h3 class="titulo-valores">Mis Pilares Fundamentales</h3>
+        <div class="valores-grid">
+          <div class="valor-card">
+            <h4>Confianza</h4>
+            <p>Una relación abogado-cliente basada en la honestidad total desde la primera consulta.</p>
+          </div>
+          <div class="valor-card">
+            <h4>Lealtad</h4>
+            <p>Mi compromiso es 100% con tus intereses y la defensa de tus derechos afectados.</p>
+          </div>
+          <div class="valor-card">
+            <h4>Compromiso</h4>
+            <p>Dedicación y perseverancia para acompañarte durante todo el proceso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    </div>
   </div>
 </template>
 
 <script setup>
 import BotonWhatsapp from '../components/BotonWhatsapp.vue';
+import logo from '@/assets/logo.svg'; 
 </script>
 
 <style scoped>
+/* --- Cabecera --- */
 .header-pagina {
   text-align: center;
   padding: 2rem 0;
@@ -65,11 +69,13 @@ import BotonWhatsapp from '../components/BotonWhatsapp.vue';
   color: #555;
 }
 
+/* --- Grilla de Bio (Texto + Logo) --- */
 .contenido-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 3rem;
   align-items: flex-start;
+  margin-bottom: 3rem; /* Espacio antes de la nueva sección */
 }
 
 .col-texto h2 {
@@ -92,7 +98,11 @@ import BotonWhatsapp from '../components/BotonWhatsapp.vue';
 }
 .col-imagen img {
   width: 100%;
-  max-width: 450px;
+  max-width: 350px;
+  height: auto;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--color-fondo-secundario);
   border-radius: 5px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
@@ -101,45 +111,68 @@ import BotonWhatsapp from '../components/BotonWhatsapp.vue';
   margin-top: 1.5rem;
 }
 
-/* Sección de Valores */
-.titulo-valores {
-  font-size: 1.8rem;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
-  border-top: 1px solid #eee;
-  padding-top: 2rem;
-}
-.valores-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* 1 columna en mobile */
-  gap: 1.5rem;
+
+/* --- INICIO DE ESTILOS CORREGIDOS --- */
+/* 1. Nueva sección de valores */
+.valores-seccion {
+  background: var(--color-fondo-secundario); /* Fondo gris para la sección */
+  padding: 4rem 0;
 }
 
+/* 2. Título de valores (ahora centrado) */
+.titulo-valores {
+  font-size: 2.5rem; /* Más grande, es título de sección */
+  margin-top: 0;
+  margin-bottom: 2.5rem;
+  border-top: none; /* Ya no necesita la línea superior */
+  padding-top: 0;
+  text-align: center;
+}
+
+/* 3. Grilla de valores (ahora en 3 columnas) */
+.valores-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+/* 4. Tarjeta de valor (fondo blanco y centrada) */
 .valor-card {
-  background: var(--color-fondo-secundario);
-  padding: 1.5rem;
+  background: var(--color-fondo); /* Fondo blanco (contrasta con el gris) */
+  padding: 2rem;
   border-radius: 5px;
   border-left: 4px solid var(--color-acento);
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 .valor-card h4 {
   color: var(--color-primario);
   font-size: 1.3rem;
 }
 
-/* Responsive */
-@media (min-width: 768px) {
-  .valores-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas en desktop */
+/* --- Responsive --- */
+
+@media (max-width: 900px) {
+  /* Apila la Bio (Texto + Logo) */
+  .contenido-grid {
+    grid-template-columns: 1fr;
+  }
+  .col-imagen {
+    order: -1;
+    margin-bottom: 2rem;
   }
 }
 
-@media (max-width: 900px) {
-  .contenido-grid {
-    grid-template-columns: 1fr; /* Apilado en mobile */
+@media (max-width: 768px) {
+  /* Apila las Tarjetas de Valores */
+  .valores-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
-  .col-imagen {
-    order: -1; /* Pone la imagen arriba en mobile */
-    margin-bottom: 2rem;
+
+  .valor-card {
+    width: 100%;
+    max-width: 450px; /* Ancho máximo en mobile */
   }
 }
 </style>

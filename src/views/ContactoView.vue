@@ -36,25 +36,31 @@
           <form @submit.prevent="enviarFormulario">
             <div class="form-group">
               <label for="nombre">Nombre y Apellido</label>
-              <input type="text" id="nombre" required>
+              <input type="text" id="nombre" v-model="formData.nombre" required>
             </div>
             
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" required>
+              <input type="email" id="email" v-model="formData.email" required>
             </div>
 
             <div class="form-group">
               <label for="telefono">Teléfono (Opcional)</label>
-              <input type="tel" id="telefono">
+              <input type="tel" id="telefono" v-model="formData.telefono">
             </div>
 
             <div class="form-group">
               <label for="mensaje">Su Mensaje</label>
-              <textarea id="mensaje" rows="6" required></textarea>
+              <textarea id="mensaje" rows="6" v-model="formData.mensaje" required></textarea>
             </div>
 
-            <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+            <button type="submit" class="btn-enviar" :disabled="enviando">
+              {{ enviando ? 'Enviando...' : 'Enviar Mensaje' }}
+            </button>
+
+            <p v-if="mensajeEstado" class="form-status" :class="{ 'status-error': esError }">
+              {{ mensajeEstado }}
+            </p>
           </form>
         </div>
       </div>
@@ -64,16 +70,60 @@
 
 <script setup>
 import BotonWhatsapp from '../components/BotonWhatsapp.vue';
+import { ref, reactive } from 'vue';
 
-// Lógica simple para el formulario (por ahora solo previene el envío)
-const enviarFormulario = () => {
-  alert('Formulario enviado (simulación). ¡Gracias por su consulta!');
-  // Aquí iría la lógica para enviar a un backend o servicio (ej. Formspree, Netlify Forms)
+// CAMBIO 5: Creamos variables reactivas para manejar el estado del form
+const formData = reactive({
+  nombre: '',
+  email: '',
+  telefono: '',
+  mensaje: ''
+});
+const enviando = ref(false);
+const mensajeEstado = ref('');
+const esError = ref(false);
+
+// CAMBIO 6: Lógica de envío a Formspree
+const enviarFormulario = async () => {
+  enviando.value = true;
+  mensajeEstado.value = '';
+  esError.value = false;
+
+  try {
+    const response = await fetch('https://formspree.io/f/mldyrzyw', { // <-- Reemplazá esto!
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      // Éxito
+      mensajeEstado.value = '¡Formulario enviado! Gracias por su consulta.';
+      esError.value = false;
+      // Reseteamos el formulario
+      formData.nombre = '';
+      formData.email = '';
+      formData.telefono = '';
+      formData.mensaje = '';
+    } else {
+      // Error de Formspree
+      throw new Error('Hubo un problema al enviar el formulario.');
+    }
+  } catch (error) {
+    // Error de red o del servidor
+    mensajeEstado.value = 'Error. Por favor, intente de nuevo más tarde.';
+    esError.value = true;
+  } finally {
+    enviando.value = false;
+  }
 }
 </script>
 
 <style scoped>
-/* Estilo de Cabecera */
+/* (Tus estilos de antes van aquí, no cambian) */
 .header-pagina {
   text-align: center;
   padding: 2rem 0;
@@ -87,15 +137,11 @@ const enviarFormulario = () => {
   font-size: 1.2rem;
   color: #555;
 }
-
-/* Grilla de Contacto */
 .contacto-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
 }
-
-/* Columna de Info */
 .info-col h3 {
   font-size: 1.5rem;
   color: var(--color-primario);
@@ -122,8 +168,6 @@ const enviarFormulario = () => {
   color: #777;
   border-radius: 5px;
 }
-
-/* Columna de Formulario */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -161,14 +205,28 @@ const enviarFormulario = () => {
   transition: all 0.3s ease;
 }
 .btn-enviar:hover {
-  background-color: #071f30; /* Un azul más oscuro */
+  background-color: #071f30;
   transform: translateY(-2px);
 }
+/* CAMBIO 7: Estilo para el botón deshabilitado */
+.btn-enviar:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
 
-/* Responsive */
+/* CAMBIO 8: Estilos para el mensaje de estado */
+.form-status {
+  margin-top: 1rem;
+  font-weight: 700;
+  color: green; /* Color de éxito */
+}
+.form-status.status-error {
+  color: red; /* Color de error */
+}
+
 @media (max-width: 900px) {
   .contacto-grid {
-    grid-template-columns: 1fr; /* 1 columna en mobile */
+    grid-template-columns: 1fr;
   }
 }
 </style>
