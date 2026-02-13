@@ -1,16 +1,26 @@
 [
   {
     "id": "nueva-ley-alquileres-2025",
-    "titulo": "Análisis: La Nueva Ley de Alquileres 2025",
-    "fecha": "25 de Octubre, 2025",
-    "resumen": "Comprenda los 5 puntos clave que cambian en los contratos de locación a partir de este año y cómo afecta a propietarios e inquilinos.",
-    "contenido": "<p>El congreso ha aprobado la nueva ley de alquileres que entrará en vigencia el próximo mes. Los cambios son sustanciales y es vital estar informado.</p><h3>Punto 1: Duración del contrato</h3><p>Se reduce el plazo mínimo legal de los contratos de vivienda de 3 a 2 años, volviendo al esquema anterior...</p><h3>Punto 2: Actualización</h3><p>Las partes podrán pactar el mecanismo de actualización del precio libremente, pudiendo usar índices como el IPC, el Salarial o una combinación...</p>"
+    "titulo": "Nueva Ley de Alquileres 2025",
+    "fecha": "20 de Noviembre, 2025",
+    "resumen": "Analizamos los puntos clave de la nueva normativa: plazos, ajustes y garantías. ¿Cómo afecta a propietarios e inquilinos?",
+    "imagen": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "contenido": "<p>La reciente modificación a la Ley de Alquileres introduce cambios significativos...</p>"
   },
   {
-    "id": "como-actuar-despido-injustificado",
-    "titulo": "¿Cómo actuar ante un despido injustificado?",
-    "fecha": "22 de Octubre, 2025",
-    "resumen": "Si fue despedido sin causa, existen plazos y procedimientos que debe seguir para reclamar la indemnización correspondiente. Le explicamos los pasos.",
-    "contenido": "<p>Ser despedido es una situación estresante. Lo primero que debe hacer es <strong>no firmar nada</strong> con lo que no esté de acuerdo.</p><p>El plazo para enviar el telegrama laboral reclamando la regularización o el pago de indemnizaciones es de 2 años, pero se recomienda actuar de inmediato...</p>"
+    "id": "despido-sin-causa-pasos",
+    "titulo": "¿Qué hacer ante un despido sin causa?",
+    "fecha": "15 de Noviembre, 2025",
+    "resumen": "Si recibiste un telegrama de despido o te negaron el ingreso a tu trabajo, es crucial actuar rápido. Guía paso a paso.",
+    "imagen": "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "contenido": "<p>El despido sin causa es una situación angustiante...</p>"
+  },
+  {
+    "id": "cuota-alimentaria-inflacion",
+    "titulo": "Ajuste de Cuota Alimentaria por Inflación",
+    "fecha": "02 de Noviembre, 2025",
+    "resumen": "¿La cuota quedó desactualizada? Te explico cómo solicitar un aumento o establecer un mecanismo de ajuste automático.",
+    "imagen": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    "contenido": "<p>En un contexto inflacionario, las cuotas alimentarias...</p>"
   }
 ]

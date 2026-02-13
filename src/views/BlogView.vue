@@ -3,30 +3,37 @@
     <div class="container">
 
       <div class="header-pagina">
-        <h1>Blog de Novedades Jurídicas</h1>
-        <p>Información clara y actualizada sobre el mundo legal.</p>
+        <h1>Novedades Jurídicas</h1>
+        <p>Información actualizada y clara para entender tus derechos.</p>
       </div>
 
-      <div class="post-list">
-        
-        <p v-if="loading">Cargando artículos...</p>
-        <p v-if="error">{{ error }}</p>
+      <div v-if="loading" class="loading">Cargando artículos...</div>
 
+      <div v-else class="blog-grid">
         <article v-for="post in posts" :key="post.id" class="post-card">
-          <h2>{{ post.titulo }}</h2>
-          <span class="post-fecha">{{ post.fecha }}</span>
-          <p class="post-resumen">{{ post.resumen }}</p>
           
-          <RouterLink :to="{ name: 'post-detalle', params: { id: post.id } }" class="btn-leer">
-            Leer Artículo Completo
-          </RouterLink>
-        </article>
+          <div class="post-imagen">
+            <img :src="post.imagen" :alt="post.titulo">
+          </div>
 
+          <div class="post-content">
+            <span class="post-fecha">{{ post.fecha }}</span>
+            <h2>{{ post.titulo }}</h2>
+            <p>{{ post.resumen }}</p>
+            
+            <RouterLink 
+              :to="{ name: 'post-detalle', params: { id: post.id } }" 
+              class="leer-mas"
+            >
+              Leer artículo completo &rarr;
+            </RouterLink>
+          </div>
+        </article>
       </div>
+
     </div>
   </div>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
@@ -80,6 +87,38 @@ onMounted(async () => {
   padding: 2rem;
   margin-bottom: 2rem;
 }
+/* ... estilos anteriores ... */
+
+.post-card {
+  background: var(--color-fondo-secundario);
+  border-radius: 8px;
+  overflow: hidden; /* Esto es importante para que la imagen respete los bordes */
+  border: 1px solid #eee;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NUEVO: Estilos para la imagen */
+.post-imagen {
+  width: 100%;
+  height: 200px; /* Altura fija para que todas se vean parejas */
+  overflow: hidden;
+}
+
+.post-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
+  transition: transform 0.3s ease;
+}
+
+/* Efecto zoom al pasar el mouse */
+.post-card:hover .post-imagen img {
+  transform: scale(1.05);
+}
+
+/* ... resto de estilos (post-content, etc) ... */
 
 .post-card h2 {
   font-size: 2rem;

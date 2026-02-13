@@ -112,9 +112,17 @@ const closeMobileMenu = () => {
 .nav-contact {
   background-color: var(--color-acento);
   color: var(--color-fondo);
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 1rem;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+}
+/* Forzamos que el botón de contacto siempre tenga texto blanco */
+.nav-menu li a.nav-contact,
+.nav-menu li a.nav-contact:hover,
+.nav-menu li a.nav-contact.router-link-exact-active {
+  color: var(--color-fondo) !important; /* Texto blanco siempre */
+  background-color: var(--color-acento);
+  border-bottom: none; /* Quitamos la línea de abajo que se agrega al estar activo */
 }
 
 .nav-contact:hover {

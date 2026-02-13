@@ -16,42 +16,50 @@
           <ul class="info-lista">
             <li><strong>Email:</strong> info@juridicogonzalez.com</li>
             <li><strong>Teléfono:</strong> (011) 1234-5678</li>
-            <li><strong>Dirección:</strong> Av. Ficticia 123, Oficina A, CABA.</li>
-          </ul>
+            </ul>
 
           <BotonWhatsapp class="btn-wsp-contacto">
             Escribir por WhatsApp
           </BotonWhatsapp>
-
-          <h3 class="titulo-mapa">Ubicación de la Oficina</h3>
-          <div class="mapa-placeholder">
-            <p>(Mapa de Google Maps)</p>
-          </div>
+          
+          <p class="atencion-nota">Atención virtual y presencial programada.</p>
         </div>
 
         <div class="form-col">
           <h3>Envíe su consulta</h3>
           <p>Complete el formulario y le responderé a la brevedad.</p>
           
-          <form @submit.prevent="enviarFormulario">
+          <form 
+            name="contacto" 
+            method="POST" 
+            data-netlify="true" 
+            data-netlify-honeypot="bot-field"
+            @submit.prevent="enviarFormulario"
+          >
+            <input type="hidden" name="form-name" value="contacto" />
+            
+            <p style="display:none">
+              <label>No completar: <input name="bot-field" v-model="botField" /></label>
+            </p>
+
             <div class="form-group">
               <label for="nombre">Nombre y Apellido</label>
-              <input type="text" id="nombre" v-model="formData.nombre" required>
+              <input type="text" id="nombre" name="nombre" v-model="formData.nombre" required>
             </div>
             
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" v-model="formData.email" required>
+              <input type="email" id="email" name="email" v-model="formData.email" required>
             </div>
 
             <div class="form-group">
               <label for="telefono">Teléfono (Opcional)</label>
-              <input type="tel" id="telefono" v-model="formData.telefono">
+              <input type="tel" id="telefono" name="telefono" v-model="formData.telefono">
             </div>
 
             <div class="form-group">
               <label for="mensaje">Su Mensaje</label>
-              <textarea id="mensaje" rows="6" v-model="formData.mensaje" required></textarea>
+              <textarea id="mensaje" name="mensaje" rows="6" v-model="formData.mensaje" required></textarea>
             </div>
 
             <button type="submit" class="btn-enviar" :disabled="enviando">
@@ -72,49 +80,54 @@
 import BotonWhatsapp from '../components/BotonWhatsapp.vue';
 import { ref, reactive } from 'vue';
 
-// CAMBIO 5: Creamos variables reactivas para manejar el estado del form
 const formData = reactive({
   nombre: '',
   email: '',
   telefono: '',
   mensaje: ''
 });
+const botField = ref(''); // Para el honeypot
 const enviando = ref(false);
 const mensajeEstado = ref('');
 const esError = ref(false);
 
-// CAMBIO 6: Lógica de envío a Formspree
+// Función para codificar los datos para Netlify
+const encode = (data) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+};
+
 const enviarFormulario = async () => {
+  if (botField.value !== "") return; // Si un bot llenó el campo oculto, no enviamos.
+
   enviando.value = true;
   mensajeEstado.value = '';
   esError.value = false;
 
   try {
-    const response = await fetch('https://formspree.io/f/mldyrzyw', { // <-- Reemplazá esto!
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(formData)
+    const response = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": "contacto",
+        ...formData
+      })
     });
 
     if (response.ok) {
-      // Éxito
-      mensajeEstado.value = '¡Formulario enviado! Gracias por su consulta.';
+      mensajeEstado.value = '¡Consulta recibida! Nos pondremos en contacto pronto.';
       esError.value = false;
-      // Reseteamos el formulario
+      // Resetear el formulario
       formData.nombre = '';
       formData.email = '';
       formData.telefono = '';
       formData.mensaje = '';
     } else {
-      // Error de Formspree
-      throw new Error('Hubo un problema al enviar el formulario.');
+      throw new Error();
     }
   } catch (error) {
-    // Error de red o del servidor
-    mensajeEstado.value = 'Error. Por favor, intente de nuevo más tarde.';
+    mensajeEstado.value = 'Hubo un error al enviar. Por favor, intente por WhatsApp.';
     esError.value = true;
   } finally {
     enviando.value = false;
@@ -123,7 +136,7 @@ const enviarFormulario = async () => {
 </script>
 
 <style scoped>
-/* (Tus estilos de antes van aquí, no cambian) */
+/* (Mantenemos tus estilos originales, eliminando los del mapa) */
 .header-pagina {
   text-align: center;
   padding: 2rem 0;
@@ -155,18 +168,10 @@ const enviarFormulario = async () => {
 .btn-wsp-contacto {
   margin-bottom: 2rem;
 }
-.titulo-mapa {
-  margin-top: 2rem;
-}
-.mapa-placeholder {
-  width: 100%;
-  height: 250px;
-  background: #eee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #777;
-  border-radius: 5px;
+.atencion-nota {
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
 }
 .form-group {
   margin-bottom: 1.5rem;
@@ -194,34 +199,31 @@ const enviarFormulario = async () => {
 
 .btn-enviar {
   background-color: var(--color-primario);
-  color: var(--color-fondo);
+  color: #fff;
   padding: 0.8rem 1.8rem;
   border-radius: 5px;
-  text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.btn-enviar:hover {
+.btn-enviar:hover:not(:disabled) {
   background-color: #071f30;
   transform: translateY(-2px);
 }
-/* CAMBIO 7: Estilo para el botón deshabilitado */
 .btn-enviar:disabled {
   background-color: #aaa;
   cursor: not-allowed;
 }
 
-/* CAMBIO 8: Estilos para el mensaje de estado */
 .form-status {
   margin-top: 1rem;
   font-weight: 700;
-  color: green; /* Color de éxito */
+  color: #2e7d32;
 }
 .form-status.status-error {
-  color: red; /* Color de error */
+  color: #d32f2f;
 }
 
 @media (max-width: 900px) {
