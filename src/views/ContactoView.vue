@@ -109,10 +109,10 @@ const enviarFormulario = async () => {
     const response = await fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
+      body: new URLSearchParams({
         "form-name": "contacto",
         ...formData
-      })
+      }).toString()
     });
 
     if (response.ok) {
