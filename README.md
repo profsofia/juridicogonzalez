@@ -15,11 +15,9 @@ El objetivo de este proyecto era crear una presencia digital profesional para un
 * **Conversión:** Facilitar el contacto directo a través de un botón de WhatsApp prominente y un formulario de contacto.
 * **Contenido Dinámico:** Incluir un blog para publicar "novedades jurídicas" y atraer tráfico.
 
-![Captura de pantalla del sitio web de Juridico Gonzalez](https://via.placeholder.com/800x450.png?text=Agregá+un+screenshot+de+tu+proyecto+aquí)
+![Captura de pantalla del sitio web de Juridico Gonzalez](<img width="1345" height="616" alt="image" src="https://github.com/user-attachments/assets/628ae932-793c-4d02-a9f0-3830868cee9e" />
+)
 
-*(Recomendación: Reemplazá el link de arriba con un screenshot real de tu Home page)*
-
----
 
 ## ✨ Características Principales
 
