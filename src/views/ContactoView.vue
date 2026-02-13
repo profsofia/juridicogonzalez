@@ -110,21 +110,18 @@ const enviarFormulario = async () => {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
-        "form-name": "contacto", // Importante: debe coincidir con el name del form
-        "nombre": formData.nombre,
-        "email": formData.email,
-        "telefono": formData.telefono,
-        "mensaje": formData.mensaje,
-        "bot-field": botField.value
+        "form-name": "contacto", // Este nombre debe ser IGUAL al del HTML
+        ...formData
       }).toString()
     });
 
     if (response.ok) {
       mensajeEstado.value = '¡Consulta recibida! Nos pondremos en contacto pronto.';
       esError.value = false;
-      Object.keys(formData).forEach(key => formData[key] = ''); // Limpieza rápida
+      // Resetear campos
+      Object.assign(formData, { nombre: '', email: '', telefono: '', mensaje: '' });
     } else {
-      throw new Error("Error en la respuesta del servidor");
+      throw new Error();
     }
   } catch (error) {
     mensajeEstado.value = 'Hubo un error al enviar. Por favor, intente por WhatsApp.';

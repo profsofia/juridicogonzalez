@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    
-    <title>Juridico Gonzalez - Estudio Jurídico</title>
-  </head>
-  <body>
-    <div id="app"></div>
 
-    <form name="contacto" netlify netlify-honeypot="bot-field" hidden>
-      <input type="text" name="nombre" />
-      <input type="email" name="email" />
-      <input type="tel" name="telefono" />
-      <textarea name="mensaje"></textarea>
-    </form>
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <title>Juridico Gonzalez - Estudio Jurídico</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <form name="contacto" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="nombre" />
+    <input type="email" name="email" />
+    <input type="text" name="telefono" />
+    <textarea name="mensaje"></textarea>
+  </form>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
